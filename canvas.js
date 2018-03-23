@@ -44,10 +44,9 @@ function writeMessage(canvas, message) {
 }
 
 function getMousePos(canvas, event) {
-	var rect = canvas.getBoundingClientRect();
 	return {
-		x: event.clientX - rect.left,
-		y: event.clientY - rect.top
+		x: event.offsetX,
+		y: event.offsetY
 	};
 }
 
@@ -64,12 +63,10 @@ var ctxDraw = canvasDraw.getContext("2d");
 canvasDraw.width = 578;
 canvasDraw.height = 200;
 
+//Choose color
 ctxDraw.strokeStyle = '#BADA55';
 ctxDraw.lineJoin = 'round';
 ctxDraw.lineCap = 'round';
-
-//blend mode
-//ctx.globalCompositeOperation = 'multiply';
 
 let isDrawing = false;
 let lastX = 0;
@@ -82,13 +79,11 @@ function draw(e){
 
 // PIXEL By PIXEL===============
   ctxDraw.beginPath();
-  //start from
   ctxDraw.moveTo(e.offsetX, e.offsetY);
-  //go to
   ctxDraw.lineTo(e.offsetX, e.offsetY);
   ctxDraw.stroke();
 
-// MORE PENCIL FEEL===============
+// MORE PENCIL-LIKE DRAWING FEEL===============
   // ctxDraw.beginPath();
   // //start from
   // ctxDraw.moveTo(lastX, lastY);
@@ -109,6 +104,10 @@ canvasDraw.addEventListener('mousemove', draw);
 
 canvasDraw.addEventListener('mouseup', () => isDrawing = false);
 canvasDraw.addEventListener('mouseout', () => isDrawing = false);
+
+//ERASE ON CANVAS (SIMILAR TO DRAW) ==========================================
+
+//ctx.clearRect(e.offsetX, e.offsetY, 1, 1);
 
 
 //GRIDVIEW ON CANVAS =========================================================
