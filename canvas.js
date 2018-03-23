@@ -5,7 +5,7 @@ var ctx = canvas.getContext("2d");
 canvas.width = 578;
 canvas.height = 200;
 
-//SET SIZE to WINDOW BROWSER
+//SET SIZE to WINDOW BROWSER===================================================
 //canvas.width = window.innerWidth;
 //canvas.height = window.innerHeight;
 
@@ -20,13 +20,13 @@ ctx.stroke();
 // width, height: area to clear
 //ctx.clearRect(30, 15, 100, 100);
 
-// save canvas image as data url (png format by default)======================
-var dataURL = canvas.toDataURL();
+// SAVE CANVAS TO LOCALSTORAGE (png format by default)======================
+//var dataURL = canvas.toDataURL("image/png");
+//localStorage.setItem('myPixelArt', JSON.stringify(dataURL));
 
-// set canvasImg image src to dataURL
-// so it can be saved as an image
-//document.getElementById('canvasImg').src = dataURL;
-
+//LOAD CANVAS FROM LOCALSTORAGE ==============================================
+//var toDrawUrl = JSON.parse(localStorage.getItem('url')) || {};
+//ctxDraw.putImageData(imgData, canvas.width, canvas.height);
 
 // GET MOUSE COORDINATES=====================================================
 var canvasMouse = document.getElementById("mouse");
@@ -64,7 +64,7 @@ canvasDraw.width = 578;
 canvasDraw.height = 200;
 
 //Choose color
-ctxDraw.strokeStyle = '#BADA55';
+ctxDraw.strokeStyle = 'black';
 ctxDraw.lineJoin = 'round';
 ctxDraw.lineCap = 'round';
 
@@ -77,13 +77,13 @@ function draw(e){
   if(!isDrawing) return; //stop the fn from running when they are not moused down
   console.log(e);
 
-// PIXEL By PIXEL===============
+// PIXEL By PIXEL====================================
   ctxDraw.beginPath();
   ctxDraw.moveTo(e.offsetX, e.offsetY);
   ctxDraw.lineTo(e.offsetX, e.offsetY);
   ctxDraw.stroke();
 
-// MORE PENCIL-LIKE DRAWING FEEL===============
+// MORE PENCIL-LIKE DRAWING FEEL======================
   // ctxDraw.beginPath();
   // //start from
   // ctxDraw.moveTo(lastX, lastY);
