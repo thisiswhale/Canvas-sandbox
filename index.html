@@ -8,12 +8,15 @@
 	<title>Document</title>
 </head>
 <style media="screen">
-	canvas {
+	#mouse, #draw,#myCanvas {
 		border: 1px solid #000;
 	}
 </style>
 
 <body>
+	<p>Grid View: </p>
+	<canvas id="grid">
+ </canvas>
 	<p>Line Canvas: </p>
 	<canvas id="myCanvas" data-anchor="grid">
  </canvas>
@@ -22,9 +25,6 @@
  </canvas>
 	<p>Draw Canvas: </p>
 	<canvas id="draw">
- </canvas>
-	<p>Grid View: </p>
-	<canvas id="grid">
  </canvas>
 	<script src='canvas.js'>
 	</script>

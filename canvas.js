@@ -1,9 +1,12 @@
+var GRID = [578,200]
+var [WIDTH , HEIGHT] = GRID;
+
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 //SET SIZE OF CANVAS
-canvas.width = 578;
-canvas.height = 200;
+canvas.width = WIDTH;
+canvas.height = HEIGHT;
 
 //SET SIZE to WINDOW BROWSER===================================================
 //canvas.width = window.innerWidth;
@@ -18,7 +21,7 @@ ctx.stroke();
 //TO CLEAR CANVAS (x,y,width,height) ========================================-
 // x,y : starting position
 // width, height: area to clear
-//ctx.clearRect(30, 15, 100, 100);
+// ctx.clearRect(30, 15, 100, 100);
 
 // SAVE CANVAS TO LOCALSTORAGE (png format by default)======================
 //var dataURL = canvas.toDataURL("image/png");
@@ -112,6 +115,29 @@ canvasDraw.addEventListener('mouseout', () => isDrawing = false);
 
 //GRIDVIEW ON CANVAS =========================================================
 var canvasGrid = document.getElementById("grid");
-var ctxGrid = canvas.getContext("2d");
-canvasGrid.width = 578;
-canvasGrid.height = 200;
+var ctxGrid = canvasGrid.getContext("2d");
+let gridW = 300;
+let gridH = 200;
+canvasGrid.width = 300;
+canvasGrid.height = 300;
+
+ctxGrid.strokeStyle = 'grey';
+ctxGrid.lineWidth = 1;
+
+//ITERATE OVER WIDTH AND HEIGHT OF THE CANVAS
+//Loop for the columns
+for (let i = 0; i<= gridW; i = i+30){
+	ctxGrid.moveTo(i,0);
+	ctxGrid.lineTo(i,gridW);
+	ctxGrid.stroke();
+
+	for (let j = 0; j<= 300; j = j+30){
+		ctxGrid.moveTo(0,j);
+		ctxGrid.lineTo(300,j);
+		ctxGrid.stroke();
+	}
+
+}
+
+//let dataGrid = new Array(WIDTH).fill(Array(HEIGHT).fill(false))
+//console.log(dataGrid);
