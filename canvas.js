@@ -140,8 +140,8 @@ ctxGrid.stroke();
 
 var kBoardWidth = 9;
 var kBoardHeight= 9;
-var kPieceWidth = 50;
-var kPieceHeight= 50;
+var kPieceWidth = 25;
+var kPieceHeight= 25;
 var kPixelWidth = 1 + (kBoardWidth * kPieceWidth);
 var kPixelHeight= 1 + (kBoardHeight * kPieceHeight);
 
@@ -152,7 +152,8 @@ gridDraw.height = kPixelHeight;
 
 //ITERATE OVER WIDTH AND HEIGHT OF THE CANVAS
 //Loop for the columns
-
+drawGrid()
+function drawGrid() {
 ctxGridDraw.beginPath();
 
 /* vertical lines */
@@ -168,8 +169,9 @@ for (var y = 0; y <= kPixelHeight; y += kPieceHeight) {
 }
 
 ctxGridDraw.strokeStyle = 'grey';//"#eee";
-ctxGridDraw.lineWidth = 1;
+ctxGridDraw.lineWidth = 2;
 ctxGridDraw.stroke();
+}
 function Cell(row, column) {
     this.row = row;
     this.column = column;
@@ -195,28 +197,12 @@ function getCursorPosition(e) {
     return cell;
 }
 
-// function drawPiece(p, selected) {
-//     var column = p.column;
-//     var row = p.row;
-//     var x = (column * kPieceWidth) + (kPieceWidth/2);
-//     var y = (row * kPieceHeight) + (kPieceHeight/2);
-//     var radius = (kPieceWidth/2) - (kPieceWidth/10);
-//     gDrawingContext.beginPath();
-//     gDrawingContext.arc(x, y, radius, 0, Math.PI*2, false);
-//     gDrawingContext.closePath();
-//     gDrawingContext.strokeStyle = "#000";
-//     gDrawingContext.stroke();
-//     if (selected) {
-// 	gDrawingContext.fillStyle = "#000";
-// 	gDrawingContext.fill();
-//     }
-// }
-
 function fillCell(e){
+	//if(!isDrawing) return;
 	var cell = getCursorPosition(e);
 	var column = cell.column;
 	var row = cell.row;
-	var x = (column * kPieceWidth);
+	var x = (column * kPieceWidth) ;
 	var y = (row * kPieceHeight);
 	console.log(x,y)
 	ctxGridDraw.beginPath();
@@ -224,7 +210,22 @@ function fillCell(e){
 	ctxGridDraw.closePath();
 	ctxGridDraw.strokeStyle = "#000";
 	ctxGridDraw.stroke();
+
+	drawGrid();
 }
+
+
+// gridDraw.addEventListener('mousedown', fillCell ,false);
+
+
+// gridDraw.addEventListener('mousedown', () =>{
+//   isDrawing = true;
+// });
+
+//gridDraw.addEventListener('mousemove', fillCell);
+
+// gridDraw.addEventListener('mouseup', () => isDrawing = false);
+// gridDraw.addEventListener('mouseout', () => isDrawing = false);
 gridDraw.addEventListener('click', fillCell ,false);
 //2D ARRAY
 let dataGrid = new Array(WIDTH).fill(Array(HEIGHT).fill(false))
